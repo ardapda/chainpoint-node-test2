@@ -179,7 +179,7 @@ async function registerNodeAsync (nodeURI) {
   let isRegistered = false
   let registerAttempts = 1
   const maxRegisterAttempts = 12
-  const retryWaitTimeMs = 5 * 1000
+  const retryWaitTimeMs = 1 * 1000
 
   while (!isRegistered) {
     try {
@@ -357,15 +357,15 @@ async function registerNodeAsync (nodeURI) {
       }
 
       registerAttempts += 1
-      if (registerAttempts >= maxRegisterAttempts) {
+      //if (registerAttempts >= maxRegisterAttempts) {
         // We've retried with no success
         // Unrecoverable Error : Exit cleanly (!), so Docker Compose `on-failure` policy
         // won't force a restart since this situation will not resolve itself.
-        console.error(`ERROR : ********************************************`)
-        console.error(`ERROR : Registration : Failed : Max Retries Reached!`)
-        console.error(`ERROR : ********************************************`)
-        process.exit(0)
-      }
+        //console.error(`ERROR : ********************************************`)
+        //console.error(`ERROR : Registration : Failed : Max Retries Reached!`)
+        //console.error(`ERROR : ********************************************`)
+        //process.exit(0)
+      //}
 
       await utils.sleepAsync(retryWaitTimeMs)
     }
